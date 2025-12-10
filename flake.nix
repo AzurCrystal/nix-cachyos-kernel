@@ -48,6 +48,10 @@
               inherit inputs;
               kernel = kernels.linux-cachyos-latest;
             };
+            zfs-cachyos-lts = pkgs.callPackage ./zfs-cachyos {
+              inherit inputs;
+              kernel = kernels.linux-cachyos-lts;
+            };
           };
       in
       rec {
