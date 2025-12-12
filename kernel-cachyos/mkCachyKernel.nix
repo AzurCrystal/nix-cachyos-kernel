@@ -36,6 +36,7 @@ lib.makeOverridable (
     splitted = lib.splitString "-" version;
     ver0 = builtins.elemAt splitted 0;
     major = lib.versions.pad 2 ver0;
+    fullVersion = lib.versions.pad 3 ver0;
 
     cachyosConfigFile = "${inputs.cachyos-kernel.outPath}/${configVariant}/config";
     cachyosPatch = "${inputs.cachyos-kernel-patches.outPath}/${major}/all/0001-cachyos-base-all.patch";
@@ -85,7 +86,7 @@ lib.makeOverridable (
 
       defconfig = args.defconfig or "cachyos_defconfig";
 
-      modDirVersion = args.modDirVersion or "${ver0}${defaultLocalVersion}";
+      modDirVersion = args.modDirVersion or "${fullVersion}${defaultLocalVersion}";
 
       # Clang has some incompatibilities with NixOS's default kernel config
       ignoreConfigErrors = args.ignoreConfigErrors or lto;
